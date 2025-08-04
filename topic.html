@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>專案主題-下一站，蛻變</title>
+  <link rel="stylesheet" href="./css/topic.css" />
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/",
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- Loading 畫面 -->
+    <div id="loadingScreen">
+      <video autoplay loop muted playsinline id="background-video">
+        <source src="./img/animation/strong-wind.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="wrapper">
+        <div class="loader-container">
+          <div class="map-background"></div>
+          <svg class="pin" viewBox="0 0 100 130">
+            <path id="leftHalf" d="M50,5 C25,5 5,30 5,55 C5,85 50,125 50,125 Z" fill="#8e24aa" />
+            <path id="rightHalf" d="M50,5 C75,5 95,30 95,55 C95,85 50,125 50,125 Z" fill="#43a047" />
+            <circle class="hole" cx="50" cy="40" r="10" />
+          </svg>
+        </div>
+        <div class="loader"></div>
+        <div class="progress-container">
+          <div id="progressBar"></div>
+          <span class="progress-percentage" id="progressPercentage">0%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 第一層遮罩 -->
+    <div id="instruction-mask-layer-1" @click="showSecondMask" v-show="instructionStep === 1">
+      <div>
+        <h1>歡迎來到「下一站，蛻變」</h1>
+        <br><br><br>
+        <h2>操作說明</h2>
+        <br>
+        <p><img class="icon-img large" src="./img/topic/mouse.png"> 拖曳滑鼠 / 手指滑動：調整視角</p>
+        <br>
+        <p><img class="icon-img medium" src="./img/topic/point.png">點地面標記：移動位置</p>
+        <br>
+        <p><img class="icon-img small" src="./img/topic/check.png"> 點擊物件：獲取資訊</p>
+        <br><br><br><br>
+        <h2>點一下畫面繼續閱讀</h2>
+      </div>
+    </div>
+
+    <!-- 第二層遮罩 -->
+    <div id="instruction-mask-layer-2" @click="hideInstruction" v-show="instructionStep === 2">
+      <div class="instruction-mask-header">
+        <div>
+          <h2>再點一下畫面即可開始參觀</h2>
+        </div>
+        <div class="logo-tip">
+          <div class="arrow-down"></div>
+          <p>點擊標題可以回到首頁</p>
+        </div>
+        <div class="menu-button-tip">
+          <div class="arrow-down"></div>
+          <div class="menu-tip-text">
+            <p>點擊交通資訊按鈕可以前往交通資訊頁面</p>
+            <br>
+            <p>點擊選單中的按鈕可以直接前往建築前面</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <header class="header">
+        <div class="logo-section" @click="handleNavClick('goHome')" style="cursor: pointer;">
+          <div class="logo">
+            <img src="./img/logo/Logo-1.png" alt="logo">
+          </div>
+          <h1 class="title">下一站，蛻變</h1>
+        </div>
+
+        <nav class="nav-section">
+          <button class="nav-button" @click="handleNavClick('import')">交通資訊</button>
+          <button class="menu-button" :class="{ active: isMenuOpen }" @click="toggleMenu"
+            :aria-expanded="isMenuOpen ? 'true' : 'false'" aria-controls="sidebar-menu">
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+            <div class="menu-line"></div>
+          </button>
+        </nav>
+      </header>
+
+      <main class="main-content" id="three-container" style="padding: 0; background-color: #cccccc;">
+        <!-- Three.js canvas will be inserted here by Vue -->
+      </main>
+      <div id="tooltip" class="tooltip"></div>
+    </div>
+
+    <div class="sidebar-menu" :class="{ 'is-open': isMenuOpen }">
+      <button class="menu-item-button" @click="handleNavClick('showExhibitionA')">台灣歷史館</button>
+      <button class="menu-item-button" @click="handleNavClick('showExhibitionB')">老建築再生館</button>
+      <button class="menu-item-button" @click="handleNavClick('showExhibitionC')">彈藥庫歷史館</button>
+    </div>
+
+    <!-- 只有初始化完成後 & showInfoModal 才顯示彈窗 -->
+    <div v-cloak v-if="isInitialized && showInfoModal" class="info-modal-overlay">
+      <div class="info-modal">
+        <button class="close-button" @click="closeInfoModal">×</button>
+        <h2 class="modal-title">{{ infoModalTitle }}</h2>
+        <p v-if="!showModalButton" class="modal-content" v-html="infoModalContent"></p>
+        <button v-else class="modal-button" @click="enterExhibition">{{ infoModalButtonText }}</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ✅ 修正位置 -->
+  <script type="module" src="./js/topic.js"></script>
+</body>
+
+</html>

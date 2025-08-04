@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading-下一站，蛻變</title>
+    <link rel="stylesheet" href="./css/loading.css">
+</head>
+
+<body>
+    <video autoplay loop muted playsinline id="background-video">
+        <source src="./img/animation/strong-wind.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="wrapper">
+        <div class="loader-container">
+            <div class="map-background"></div>
+            <svg class="pin" viewBox="0 0 100 130">
+                <!-- 左半邊 -->
+                <path id="leftHalf" d="M50,5
+        C25,5 5,30 5,55
+        C5,85 50,125 50,125
+        Z" fill="#8e24aa" />
+
+                <!-- 右半邊 -->
+                <path id="rightHalf" d="M50,5
+        C75,5 95,30 95,55
+        C95,85 50,125 50,125
+        Z" fill="#43a047" />
+
+                <!-- 中間圓洞 -->
+                <circle class="hole" cx="50" cy="40" r="10" />
+            </svg>
+        </div>
+        <div class="loader"></div>
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+            <span class="progress-percentage" id="progressPercentage">0%</span>
+        </div>
+    </div>
+        
+
+    <script src="./js/loading.js"></script>
+</body>
+
+</html>

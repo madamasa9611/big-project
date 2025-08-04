@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <swiper :modules="[Pagination, Navigation]" :slides-per-view="1" :space-between="50"
+        :pagination="{ clickable: true }" :navigation="true" class="mySwiper full-swiper">
+        <swiper-slide v-for="(image, index) in section3Images" :key="index">
+            <img :src="image" alt="big project image" class="swiper-image" />
+        </swiper-slide>
+    </swiper>
+
+</body>
+
+</html>

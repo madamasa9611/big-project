@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>老建築再生館-下一站，蛻變</title>
+    <link rel="stylesheet" href="./css/old-buildings.css">
+
+
+
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/",
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- Loading 畫面 -->
+        <div id="loadingScreen">
+            <video autoplay loop muted playsinline id="background-video">
+                <source src="./img/animation/strong-wind.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="wrapper">
+                <div class="loader-container">
+                    <div class="map-background"></div>
+                    <svg class="pin" viewBox="0 0 100 130">
+                        <path id="leftHalf" d="M50,5 C25,5 5,30 5,55 C5,85 50,125 50,125 Z" fill="#8e24aa" />
+                        <path id="rightHalf" d="M50,5 C75,5 95,30 95,55 C95,85 50,125 50,125 Z" fill="#43a047" />
+                        <circle class="hole" cx="50" cy="40" r="10" />
+                    </svg>
+                </div>
+                <div class="loader"></div>
+                <div class="progress-container">
+                    <span class="progress-percentage" id="progressPercentage">0%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- 第一層遮罩 -->
+        <div id="instruction-mask-layer-1" @click="showSecondMask" v-show="instructionStep === 1">
+            <div>
+                <h1>歡迎來到「老建築再生館」</h1>
+                <br><br><br>
+                <h2>操作說明</h2>
+                <br>
+                <p><img class="icon-img large" src="./img/topic/mouse.png"> 拖曳滑鼠 / 手指滑動：調整視角</p>
+                <br>
+                <p><img class="icon-img medium" src="./img/topic/point.png">點地面標記：移動位置</p>
+                <br>
+                <p><img class="icon-img small" src="./img/old-buildings/painted.png"> 點擊畫框：獲取資訊</p>
+                <br><br><br><br>
+                <h2>點一下畫面繼續閱讀</h2>
+            </div>
+        </div>
+
+        <!-- 第二層遮罩 -->
+        <div id="instruction-mask-layer-2" @click="hideInstruction" v-show="instructionStep === 2">
+            <div class="instruction-mask-header">
+                <div>
+                    <h2>再點一下畫面即可開始參觀</h2>
+                </div>
+                <div class="logo-tip">
+                    <div class="arrow-down"></div>
+                    <p>點擊標題可以回到首頁</p>
+                </div>
+                <div class="menu-button-tip">
+                    <div class="arrow-down"></div>
+                    <div class="menu-tip-text">
+                        <p>點擊回到首頁按鈕可以前往首頁頁面</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <header class="header">
+                <div class="logo-section" @click="handleNavClick('import')" style="cursor: pointer;">
+                    <div class="logo">
+                        <img src="./img/logo/Logo-1.png" alt="logo">
+                    </div>
+                    <h1 class="title">下一站，蛻變</h1>
+                </div>
+
+                <nav class="nav-section">
+                    <button class="nav-button" @click="handleNavClick('import')">回到首頁</button>
+
+                </nav>
+            </header>
+
+            <main class="main-content" id="three-container" style="padding: 0; background-color: #cccccc;">
+                <!-- Three.js canvas will be inserted here by Vue -->
+            </main>
+            <div id="tooltip" class="tooltip"></div>
+        </div>
+
+        <div v-cloak v-if="isInitialized && showInfoModal" class="info-modal-overlay">
+            <div class="info-modal" :class="{ 'info-modal-door': infoModalTitle === '出口' }">
+                <button class="close-button" @click="closeInfoModal">×</button>
+                <h2 class="modal-title">{{ infoModalTitle }}</h2>
+                <div class="modal-content-wrapper">
+                    <div class="carousel-section" v-if="showImageCarousel">
+                        <img :src="carouselImages[currentImageIndex]" class="carousel-image">
+                        <div class="carousel-controls">
+                            <button @click="prevImage">〈</button>
+                            <button @click="nextImage">〉</button>
+                        </div>
+                        <div class="carousel-pagination">
+                            <span v-for="(img, index) in carouselImages" :key="index" class="pagination-dot"
+                                :class="{ active: index === currentImageIndex }" @click="goToImage(index)"></span>
+                        </div>
+                    </div>
+                    <div class="modal-text-section">
+                        <p class="modal-content" v-html="infoModalContent"></p>
+                    </div>
+                </div>
+                <button v-if="showModalButton" class="modal-button" @click="enterExhibition">{{ infoModalButtonText
+                    }}</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script type="module" src="./js/old-buildings.js"></script>
+</body>
+
+</html>

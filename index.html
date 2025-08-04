@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首頁-下一站，蛻變</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+   <video autoplay muted loop id="bg-video">
+        <source src="./img/animation/breeze.mp4" type="video/mp4">
+    </video>
+    <div id="app">
+        <div class="container">
+            <header class="header">
+                <div class="logo-section">
+                    <div class="logo">
+                        <img src="./img/logo/logo-4.png" alt="logo">
+                    </div>
+                </div>
+                
+               
+            </header> 
+            <nav class="nav-section">
+                     <button class="nav-button button-1" @click="handleNavClick('import')">
+                        進入模型
+                     </button>
+                    <!-- 漢堡條留著備用 -->
+                    <!-- <button 
+                        class="menu-button" 
+                        :class="{ active: isMenuOpen }"
+                        @click="toggleMenu"
+                        :aria-expanded="isMenuOpen ? 'true' : 'false'"
+                        aria-controls="sidebar-menu"
+                    >
+                        <div class="menu-line"></div>
+                        <div class="menu-line"></div>
+                        <div class="menu-line"></div>
+                    </button> -->
+                </nav>
+        </div>
+
+        <!-- 漢堡條留著備用 -->
+        <!-- <div class="sidebar-menu" :class="{ 'is-open': isMenuOpen }">
+            <button class="menu-item-button" @click="handleNavClick('introduction')">簡 介</button>
+            <button class="menu-item-button" @click="handleNavClick('traffic')">交通資訊</button>
+        </div> -->
+
+    </div>
+
+    <script src="./js/index.js"></script>
+</body>
+</html>
