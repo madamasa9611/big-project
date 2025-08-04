@@ -1,0 +1,327 @@
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ body {
+     font-family: 'Arial', sans-serif;
+     background-color: #f5f5f5;
+ }
+
+ .container {
+     margin: 0 auto;
+     background-color: #d2d2d2;
+     min-height: 100vh;
+     position: relative;
+ }
+
+ .header {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     padding: 20px 40px;
+     z-index: 10;
+     position: fixed;
+     top: 0;
+     left: 0;
+     min-width: 100%;
+     background-color: black;
+ }
+
+ .logo-section {
+     display: flex;
+     align-items: center;
+     background-color: black;
+     cursor: pointer;
+ }
+
+ .logo {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 60px;
+     height: 60px;
+ }
+
+ .logo img {
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
+ }
+
+ .title {
+     font-size: 20px;
+     font-weight: bold;
+     color: #fff;
+     padding: 9px 12px;
+     font-family: MPingFang TC;
+     white-space: nowrap;
+ }
+
+ .nav-section {
+     display: flex;
+     align-items: center;
+     gap: 15px;
+ }
+
+ .nav-button {
+     border: 2px solid white;
+     background-color: white;
+     color: black;
+     padding: 8px 25px;
+     border-radius: 20px;
+     cursor: pointer;
+     font-size: 14px;
+     transition: all 0.3s ease;
+ }
+
+ .nav-button:hover {
+     color: white;
+     background-color: transparent;
+     transform: translateY(-1px);
+ }
+
+ .content-wrapper {
+     transform-origin: top center;
+     transition: transform .2s ease;
+ }
+
+ .content {
+     padding-top: 100px;
+     max-width: 95%;
+     margin: 0 auto;
+     background-color: #d2d2d2;
+ }
+
+ .top-section {
+     display: flex;
+     min-height: 300px;
+ }
+
+ .red-section {
+     background: linear-gradient(135deg, #e85a5a, #d44545);
+     color: white;
+     padding: 40px;
+     flex: 1;
+     display: flex;
+     align-items: center;
+     line-height: 1.8;
+     font-size: 16px;
+     position: relative;
+     min-width: 300px;
+     word-break: break-word;
+ }
+
+ .red-section::after {
+     content: '';
+     position: absolute;
+     right: -20px;
+     top: 0;
+     bottom: 0;
+     width: 40px;
+     background: linear-gradient(135deg, #e85a5a, #d44545);
+     transform: skewX(-10deg);
+ }
+
+ .era-label {
+     background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
+     color: white;
+     padding: 40px 30px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 24px;
+     font-weight: bold;
+     letter-spacing: 8px;
+     writing-mode: vertical-rl;
+     text-orientation: upright;
+     min-width: 120px;
+ }
+
+ .photo-placeholder {
+     background: linear-gradient(135deg, #9a9a9a, #7a7a7a);
+     color: white;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 20px;
+     flex: 1.2;
+     position: relative;
+     overflow: hidden;
+ }
+
+ .photo-placeholder::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
+ }
+
+ .bottom-section {
+     display: flex;
+     min-height: 300px;
+ }
+
+ .photo-left {
+     flex: 1;
+     background: linear-gradient(135deg, #9a9a9a, #7a7a7a);
+     color: white;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 20px;
+     position: relative;
+     overflow: hidden;
+ }
+
+ .photo-left::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.1) 50%, transparent 60%);
+ }
+
+ .year-section {
+     background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
+     color: white;
+     padding: 40px 30px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     font-size: 24px;
+     font-weight: bold;
+     letter-spacing: 2px;
+     writing-mode: vertical-rl;
+     text-orientation: upright;
+     min-width: 120px;
+ }
+
+ .blue-section {
+     background: linear-gradient(135deg, #7a8bc4, #5a6ba4);
+     color: white;
+     padding: 40px;
+     flex: 1.5;
+     display: flex;
+     align-items: center;
+     line-height: 1.8;
+     font-size: 16px;
+     position: relative;
+ }
+
+ .blue-section::before {
+     content: '';
+     position: absolute;
+     left: -20px;
+     top: 0;
+     bottom: 0;
+     width: 40px;
+     background: linear-gradient(135deg, #7a8bc4, #5a6ba4);
+     transform: skewX(10deg);
+ }
+
+ .text-highlight {
+     font-weight: bold;
+     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+ }
+
+ .photo-placeholder img,
+ .photo-left img {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+     /* 或 contain 依需求 */
+     object-position: center center;
+ }
+
+ .photo-placeholder,
+ .photo-left {
+     width: 100%;
+     /* 只設寬度，高度由 aspect-ratio 自動維持 */
+     aspect-ratio: 6 / 3;
+     overflow: hidden;
+ }
+
+ @media (max-width: 768px) {
+
+     .top-section,
+     .bottom-section {
+         display: flex;
+         flex-direction: column;
+     }
+
+     .red-section::after {
+         display: none;
+     }
+
+     .blue-section::before {
+         display: none;
+     }
+
+     /* 768px 以下增加照片高度 */
+     .photo-placeholder,
+     .photo-left {
+         height: 300px;
+     }
+
+     /* ✅ top-section 手機排序：era-label → photo → red */
+     .top-section .era-label {
+         order: 1;
+         writing-mode: horizontal-tb;
+         transform: rotate(0deg);
+         text-orientation: mixed;
+     }
+
+     .top-section .photo-placeholder {
+         order: 2;
+     }
+
+     .top-section .red-section {
+         order: 3;
+     }
+
+     /* ✅ bottom-section 手機排序：year → photo → blue */
+     .bottom-section .year-section {
+         order: 1;
+         writing-mode: horizontal-tb;
+         transform: rotate(0deg);
+         text-orientation: mixed;
+     }
+
+     .bottom-section .photo-left {
+         order: 2;
+     }
+
+     .bottom-section .blue-section {
+         order: 3;
+     }
+ }
+
+ @media (max-width: 480px) {
+
+     .top-section .era-label,
+     .bottom-section .year-section {
+         font-size: 16px;
+         padding: 20px;
+     }
+
+     .red-section,
+     .blue-section {
+         font-size: 14px;
+         padding: 20px;
+     }
+
+     .photo-placeholder,
+     .photo-left {
+         height: 250px;
+     }
+ }

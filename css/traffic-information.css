@@ -1,0 +1,458 @@
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+ }
+
+ html,
+ body {
+     position: relative;
+     height: 100%;
+ }
+
+ body {
+     font-family: 'Arial', sans-serif;
+     background-color: #f5f5f5;
+ }
+
+ .container {
+     max-width: 100%;
+     margin: 0 auto;
+     position: relative;
+ }
+
+ .header {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+     position: fixed;
+     top: 0;
+     left: 0;
+     min-width: 100%;
+     padding: 20px 40px 20px;
+     background-color: black;
+     z-index: 10;
+ }
+
+ .logo-section {
+     display: flex;
+     align-items: center;
+     background-color: black;
+     /* 在logo和標題之間增加間距 */
+     cursor: pointer;
+ }
+
+ /* 新增logo樣式 */
+ .logo {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 60px;
+     /* 設定logo容器寬度 */
+     height: 60px;
+     /* 設定logo容器高度 */
+ }
+
+ .logo img {
+     width: 100%;
+     height: 100%;
+     object-fit: contain;
+     /* 保持圖片比例，適應容器大小 */
+
+ }
+
+ .title {
+     font-size: 20px;
+     font-weight: bold;
+     color: #fff;
+     padding: 9px 12px;
+
+     font-family: MPingFang TC;
+     white-space: nowrap;
+     /* 防止標題換行 */
+ }
+
+ .nav-section {
+     display: flex;
+     align-items: center;
+     gap: 15px;
+ }
+
+ .nav-button {
+     border: 2px solid white;
+     background-color: white;
+     color: black;
+     padding: 8px 25px;
+     border-radius: 20px;
+     cursor: pointer;
+     font-size: 14px;
+     font-weight: bold;
+     transition: all 0.3s ease;
+ }
+
+ .nav-button:hover {
+     background-color: transparent;
+     color: white;
+     transform: translateY(-1px);
+ }
+
+ .main-content {
+     padding-top: 80px;
+
+     min-height: calc(100vh - 80px);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     background-color: #d2d2d2;
+
+ }
+
+ .content-block {
+     width: 95%;
+     height: 700px;
+     padding: 20px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     text-align: center;
+     color: #333;
+     font-size: 18px;
+     position: relative;
+
+ }
+
+ .content-1 {
+     height: 80vh;
+     padding-top: 50px;
+ }
+
+ .swiper-slide {
+     text-align: center;
+     font-size: 18px;
+     background: white;
+     color: #000;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-start;
+     align-items: center;
+     padding: 10px 30px;
+     overflow: auto;
+     /* 出現滾動條 */
+ }
+
+ .swiper-slide img {
+     display: block;
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+
+ .swiper-title {
+     font-size: 24px;
+     font-weight: bold;
+     margin-bottom: 20px;
+     color: #333;
+     text-align: center;
+ }
+
+ .swiper-content {
+     background: #f8f8f8;
+     border-radius: 10px;
+     padding: 20px;
+     margin: 0 15px;
+     flex: 1;
+     display: flex;
+     justify-content: center;
+     text-align: left;
+     line-height: 1.6;
+     
+ }
+ .swiper-content-1{
+    font-size: 14px;
+ }
+
+ .swiper-img {
+     width: 95%;
+     height: 300px;
+     overflow: hidden;
+      /* 使用絕對定位固定在底部 */
+    position: absolute;
+    bottom: 80px; /* 距離底部 10px */
+    left: 50%;
+    transform: translateX(-50%); /* 水平居中 */
+ }
+
+ .swiper-img img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+
+ }
+
+ .inner-rectangle {
+     width: 80%;
+     height: 90%;
+     background-color: black;
+     border: 2px solid #ccc;
+     border-radius: 20px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     color: #666;
+     font-size: 16px;
+     position: relative;
+     /* 添加相對定位 */
+ }
+
+ .screen {
+     position: absolute;
+     right: 4%;
+     width: 88%;
+     height: 90%;
+     background-color: white;
+     border-radius: 10px;
+     /* 稍微小於父容器的圓角 */
+ }
+
+
+ /* 平板樣式的白色圓形按鈕 */
+ .tablet-button {
+     position: absolute;
+     left: 2%;
+     top: 50%;
+     transform: translateY(-50%);
+     width: 60px;
+     height: 60px;
+     background-color: #ffffff;
+     border: 2px solid #e0e0e0;
+     border-radius: 50%;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     z-index: 20;
+     /* 確保按鈕在地圖上方 */
+ }
+
+ .tablet-button:hover {
+     background-color: #f8f8f898;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+ }
+
+ .tablet-button::before {
+     content: '';
+     width: 8px;
+     height: 8px;
+     background-color: #ddd;
+     border-radius: 50%;
+ }
+
+ .content-placeholder {
+     text-align: center;
+     color: #666;
+     font-size: 18px;
+ }
+
+@media (max-width: 1200px) {
+    .tablet-button{
+        left: 1%;
+    }
+}
+
+ /* Tablet Styles - 768px */
+ @media (max-width: 768px) {
+     .header {
+         padding: 12px 15px;
+         flex-wrap: wrap;
+     }
+
+     .title {
+         font-size: 18px;
+         padding: 6px 10px;
+     }
+
+     .logo-bar {
+         height: 35px;
+         margin-right: 12px;
+     }
+
+     .nav-section {
+         gap: 10px;
+     }
+
+     .nav-button {
+         padding: 6px 12px;
+         font-size: 13px;
+     }
+
+     .main-content {
+         padding-top: 80px;
+
+     }
+
+     .content-block {
+         width: 95%;
+         height: 400px;
+         font-size: 16px;
+         padding: 15px;
+         border-radius: 6px;
+     }
+
+     .content-1 {
+         height: 350px;
+     }
+
+     .swiper-slide {
+         padding: 1px;
+     }
+
+     .swiper-title {
+         font-size: 15px;
+     }
+
+     .swiper-content {
+         font-size: 13px;
+         padding: 1px 5px;
+     }
+
+     .swiper-img {
+         width: 100%;
+         height: 100px;
+     }
+
+     .inner-rectangle {
+         width: 85%;
+         height: 85%;
+         font-size: 14px;
+         border-radius: 15px;
+     }
+
+     .screen {
+         right: 3%;
+         width: 90%;
+         height: 85%;
+         border-radius: 8px;
+     }
+
+     .content-placeholder {
+         font-size: 16px;
+     }
+
+     .tablet-button {
+         width: 25px;
+         height: 25px;
+         left: 1%;
+     }
+
+     .tablet-button::before {
+         width: 7px;
+         height: 7px;
+     }
+
+ }
+
+ /* Mobile Styles - 480px */
+ @media (max-width: 480px) {
+     .header {
+         padding: 10px 12px;
+
+         gap: 10px;
+     }
+
+     .logo-section {
+
+         justify-content: center;
+     }
+
+     .logo {
+         width: 30px;
+         height: 30px;
+     }
+
+     .nav-section {
+         gap: 8px;
+         flex-wrap: wrap;
+         justify-content: center;
+     }
+
+     .nav-button {
+         padding: 5px 10px;
+         font-size: 12px;
+         border-radius: 15px;
+     }
+
+     .title {
+         font-size: 16px;
+         padding: 5px 8px;
+     }
+
+     .logo-bar {
+         height: 30px;
+         width: 3px;
+         margin-right: 10px;
+     }
+
+   
+
+     .content-block {
+         width: 98%;
+         height: 300px;
+         font-size: 14px;
+         padding: 12px;
+         border-radius: 5px;
+     }
+
+     .content-1 {
+         height: 250px;
+     }
+
+     .swiper-slide {
+         padding: 1px;
+     }
+
+     .swiper-title {
+         font-size: 10px;
+     }
+
+     .swiper-content {
+         font-size: 10px;
+         padding: 1px 5px;
+     }
+
+     .swiper-img {
+         width: 100%;
+         height: 50px;
+     }
+
+     .inner-rectangle {
+         width: 90%;
+         height: 80%;
+         font-size: 12px;
+         border-radius: 12px;
+     }
+
+     .screen {
+         width: 85%;
+         height: 80%;
+         border-radius: 6px;
+     }
+
+     .content-placeholder {
+         font-size: 14px;
+     }
+
+     .tablet-button {
+         width: 25px;
+         height: 25px;
+         left: 2%;
+     }
+
+     .tablet-button::before {
+         width: 5px;
+         height: 5px;
+     }
+
+
+ }

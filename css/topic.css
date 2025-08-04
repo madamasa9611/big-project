@@ -1,0 +1,805 @@
+/* 主題頁面.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    --header-height: 80px;
+    /* Default header height */
+}
+
+[v-cloak] {
+    display: none !important;
+}
+
+#instruction-mask-layer-1,
+#instruction-mask-layer-2 {
+  display: none;
+}
+
+#app {
+      display: none;
+    }
+
+#loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+#background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+#loadingScreen .wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    /* 控制地圖與Loading之間的距離 */
+}
+
+.loader {
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 30px;
+    background: linear-gradient(90deg, #000000 50%, #1a1b6900 0) right/200% 100%;
+    animation: l21 2s infinite linear;
+}
+
+
+.loader::before {
+    content: "Loading...";
+    color: #0000;
+    padding: 0 5px;
+    background: inherit;
+    background-image: linear-gradient(90deg, #fff 50%, #ffffff 0);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+@keyframes l21 {
+    100% {
+        background-position: left
+    }
+}
+
+.loader-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: white;
+    border-radius: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.map-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(90deg, #ddd 1px, transparent 1px),
+        linear-gradient(0deg, #ddd 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-radius: 32px;
+    z-index: 1;
+}
+
+.pin {
+    width: 80px;
+    height: 100px;
+    animation: rotateY 2s infinite linear;
+    transform-style: preserve-3d;
+    z-index: 2;
+}
+
+.hole {
+    fill: white;
+    stroke: rgba(0, 0, 0, 0.1);
+    stroke-width: 1;
+}
+
+.progress-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress-bar {
+    width: 300px;
+    height: 10px;
+    background: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-percentage {
+    color: #fff;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 30px;
+    z-index: 1;
+    position: relative;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+    margin-top: 6px;
+}
+
+#instruction-mask-layer-1 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(171, 171, 212, 0.774);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    z-index: 10000;
+    cursor: pointer;
+}
+
+#instruction-mask-layer-1 h1 {
+    font-size: 60px;
+    margin-bottom: 1rem;
+}
+
+#instruction-mask-layer-1 h2 {
+    font-size: 32px;
+    margin-bottom: 1rem;
+}
+
+#instruction-mask-layer-1 p {
+    font-size: 28px;
+}
+
+.logo-tip,
+.menu-button-tip {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 14px;
+    color: white;
+    z-index: 10001;
+    max-width: 220px;
+    text-align: left;
+    letter-spacing: 2px
+}
+
+#instruction-mask-layer-2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(188, 188, 233, 0.774);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    z-index: 10000;
+    cursor: pointer;
+}
+
+#instruction-mask-layer-2 h1 {
+    font-size: 60px;
+    margin-bottom: 1rem;
+}
+
+#instruction-mask-layer-2 h2 {
+    font-size: 32px;
+    margin-bottom: 1rem;
+}
+
+#instruction-mask-layer-2 p {
+    font-size: 28px;
+}
+
+#instruction-mask-layer-2 .menu-tip-text p {
+    font-size: 18px;
+    /* ✅ 單獨設定字體大小 */
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    text-align: left;
+}
+
+/* 左上角 LOGO 說明 */
+.logo-tip {
+    position: absolute;
+    top: 90px;
+    left: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #fff;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    color: white;
+    z-index: 10001;
+    width: 220px;
+    /* ✅ Updated width */
+    text-align: left;
+}
+
+
+.logo-tip .arrow-down {
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 12px solid white;
+}
+
+
+
+/* 右上角選單說明 */
+.menu-button-tip {
+    top: 80px;
+    right: 30px;
+    text-align: left;
+    font-size: 12px;
+
+}
+
+.menu-button-tip .arrow-down {
+    position: absolute;
+    top: -12px;
+    left: 80%;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 12px solid white;
+}
+
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: transparent;
+    height: 100vh;
+    /* 確保容器佔滿整個視窗高度 */
+    position: relative;
+    overflow: hidden;
+    /* 隱藏容器內的滾動條 */
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   padding: 20px 40px 20px;
+    background-color: transparent; /* 透明背景 */
+    position: absolute; /* 絕對定位 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; /* 確保 header 在 main-content 上方 */
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    background-color: black;
+    
+    /* 在logo和標題之間增加間距 */
+}
+
+/* 新增logo樣式 */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    /* 設定logo容器寬度 */
+    height: 60px;
+    /* 設定logo容器高度 */
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* 保持圖片比例，適應容器大小 */
+
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    padding: 9px 12px;
+    
+    font-family: MPingFang TC;
+    white-space: nowrap;
+    /* 防止標題換行 */
+}
+
+.nav-section {
+    position: relative;
+    /* 用於定位 sidebar-menu */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-button {
+     background-color:white;
+     color:black;
+    border: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;   
+    font-weight: bold;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+    background-color: transparent; 
+    color: white;
+}
+
+.menu-button {
+    background-color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    transition: all 0.3s ease;
+    z-index: 100;
+    /* 確保按鈕在選單之上 */
+}
+
+.menu-button:hover {
+    background-color: transparent;
+    border: 2px solid white;
+
+}
+
+.menu-button:hover .menu-line {
+    background-color: white;
+}
+
+.menu-line {
+    width: 20px;
+    height: 2px;
+    background-color: black;
+    border-radius: 1px;
+}
+
+/* 側邊選單的樣式調整 */
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    /* 這裡需要動態計算 header 的實際高度 */
+    /* 20px (上 padding) + 20px (下 padding) + 內容高度 (假設40px) = 80px */
+    /* 為了確保不被擋住，可以稍微增加一點距離，例如 80px + 5px = 85px */
+    top: calc(var(--header-height) + 2px); /* 初始設定，會根據 media query 調整 */
+    right: 40px;
+    background-color: #b8b8b8;
+    width: auto;
+    max-width: calc(100vw - 80px);
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 101; /* 將 z-index 提高，確保選單在 header 之上 */
+    border-radius: 5px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    pointer-events: none;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.sidebar-menu.is-open {
+    max-height: 300px;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.menu-item-button {
+    background-color: white;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+     border:2px solid white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    white-space: nowrap;
+    min-width: fit-content;
+}
+
+.menu-item-button:last-child {
+    margin-bottom: 0;
+}
+
+.menu-item-button:hover {
+    background-color:transparent;
+    color: white;
+   
+}
+
+.main-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* 確保 main-content 在 header 下方 */
+    background-color: aqua;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-placeholder {
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+}
+
+/* Info Modal Styles */
+.info-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.info-modal {
+    background: black;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    text-align: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color:white;
+}
+
+.close-button:hover {
+    color: #f00;
+}
+
+.modal-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.modal-button {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border: 2px solid white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 20px;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+}
+
+.modal-button:hover {
+    background-color: white;
+    color:black;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .header {
+        padding: 12px 15px;
+        /* header 的 padding 改變，實際高度也會改變 */
+    }
+
+    .title {
+        font-size: 16px;
+        padding: 6px 10px;
+    }
+
+    .nav-button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    .menu-button {
+        width: 35px;
+        height: 35px;
+    }
+
+    .menu-line {
+        width: 18px;
+    }
+
+    .main-content {
+        padding: 30px 15px;
+    }
+
+    .content-placeholder {
+        font-size: 16px;
+    }
+
+    .sidebar-menu {
+        /* 12px (上 padding) + 15px (下 padding) + 內容高度 (假設35px) = 62px */
+        /* 為了確保不被擋住，可以稍微增加一點距離，例如 62px + 5px = 67px */
+            top: calc(59px + 5px); /* 根據 768px 下的 header 高度調整 */
+        right: 15px;
+        max-width: calc(100vw - 30px);
+        width: auto;
+    }
+
+    .menu-item-button {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+    #instruction-mask-layer-1 h1{
+        font-size: 30px;
+    }
+     #instruction-mask-layer-1 h2{
+        font-size: 25px;
+    }
+     #instruction-mask-layer-1 p{
+        font-size: 15px;
+    }
+
+    .logo{
+        width: 30px;
+        height: 30px;
+    }
+    .nav-section {
+        gap: 10px;
+    }
+
+    .title {
+        font-size: 14px;
+        padding: 5px 8px;
+    }
+
+    .nav-button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .menu-button {
+        width: 32px;
+        height: 32px;
+    }
+
+    .menu-line {
+        width: 16px;
+    }
+
+    .sidebar-menu {
+        /* 12px (上 padding) + 15px (下 padding) + 內容高度 (假設32px) = 59px */
+        /* 為了確保不被擋住，可以稍微增加一點距離，例如 59px + 5px = 64px */
+        top: calc(56px + 5px);
+        /* 根據 480px 下的 header 高度調整 */
+        right: 10px;
+        max-width: calc(100vw - 20px);
+        width: auto;
+    }
+
+    .menu-item-button {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    #instruction-mask-layer-2 h2 {
+        font-size: 20px;
+        margin-bottom: 1rem;
+    }
+
+    #instruction-mask-layer-2 p {
+        font-size: 18px;
+    }
+
+    #instruction-mask-layer-2 .menu-tip-text p {
+        font-size: 16px;
+        /* ✅ 單獨設定字體大小 */
+        line-height: 1.5;
+        letter-spacing: 0.5px;
+        text-align: left;
+    }
+
+    /* 左上角 LOGO 說明 */
+    .logo-tip {
+        position: absolute;
+        top: 80px;
+        left: 30px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid #fff;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 14px;
+        color: white;
+        z-index: 10001;
+        width: 120px;
+        /* ✅ Updated width */
+        text-align: left;
+    }
+
+
+    .logo-tip .arrow-down {
+        position: absolute;
+        top: -12px;
+        left: 20px;
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 12px solid white;
+    }
+
+
+
+    /* 右上角選單說明 */
+    .menu-button-tip {
+        top: 80px;
+        right: 30px;
+        text-align: left;
+        font-size: 12px;
+        width: 120px;
+    }
+
+    .menu-button-tip .arrow-down {
+        position: absolute;
+        top: -12px;
+        left: 80%;
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 12px solid white;
+    }
+}
+
+/* Animation for menu button */
+.menu-button.active .menu-line:nth-child(1) {
+    transform-origin: center;
+    transform: translate(0, 5px) rotate(45deg);
+}
+
+.menu-button.active .menu-line:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-button.active .menu-line:nth-child(3) {
+    transform-origin: center;
+    transform: translate(0, -5px) rotate(-45deg);
+}
+
+/* Tooltip Styles */
+.tooltip {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 14px;
+    pointer-events: none;
+    /* Allow mouse events to pass through */
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1000;
+}
+
+.tooltip.show {
+    opacity: 1;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0;
+    touch-action: none;
+    pointer-events: auto;
+}
+
+#three-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+/* 操作圖示大小統一管理 */
+.icon-img {
+    vertical-align: middle;
+    margin-right: 2px;
+    /* ✅ 更小的圖文間距 */
+}
+
+.icon-img.large {
+    height: 36px;
+}
+
+.icon-img.medium {
+    height: 36px;
+    margin-right: 6px;
+}
+
+.icon-img.small {
+    height: 36px;
+    margin-right: 6px;
+}

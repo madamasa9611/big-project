@@ -1,0 +1,236 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#bg-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    min-height: 100vh;
+    position: relative;
+    z-index: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 40px 20px;
+    z-index: 100;
+    position: fixed;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    
+    
+    /* 在logo和標題之間增加間距 */
+}
+
+/* 新增logo樣式 */
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 500px;
+    /* 設定logo容器寬度 */
+    height: 100px;
+    /* 設定logo容器高度 */
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* 保持圖片比例，適應容器大小 */
+
+}
+
+
+
+.nav-section {
+    position: fixed;
+    top: 59%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.nav-button {
+    border: none;
+    padding: 8px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    /* 防止按鈕文字換行 */
+}
+
+.button-1 {
+    border: 2px solid white;
+    background-color: white;
+    color: black;
+}
+
+.button-1:hover {
+    
+   color: white;
+    background-color: transparent;
+}
+
+.button-2 {
+    border: 2px solid white;
+    background-color: white;
+    color: black;
+}
+
+.button-2:hover {
+    background-color: transparent;
+    color: white;  
+}
+
+.main-content {
+    padding: 40px 20px;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.content-placeholder {
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.sidebar-menu {
+    position: absolute;
+    top: 75px;
+    right: 40px;
+    width: 150px;
+    height: 150px;
+    background-color: yellow;
+    border-radius: 4px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.sidebar-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .header {
+        padding: 12px 15px;
+    }
+
+    .logo-section {
+        gap: 10px;
+        /* 在手機上減少間距 */
+    }
+
+    .logo {
+        width: 35px;
+        /* 手機上縮小logo */
+        height: 35px;
+    }
+
+    .title {
+        font-size: 16px;
+        padding: 6px 10px;
+    }
+
+    .nav-section {
+        gap: 8px;
+    }
+
+    .nav-button {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+
+    .main-content {
+        padding: 30px 15px;
+    }
+
+    .content-placeholder {
+        font-size: 16px;
+    }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+    .header {
+        padding: 10px 12px;
+    }
+
+    .logo-section {
+        gap: 8px;
+    }
+
+    .logo {
+        width: 300px;
+        /* 小手機上進一步縮小logo */
+        height: 60px;
+    }
+
+    .title {
+        font-size: 14px;
+        padding: 5px 8px;
+    }
+
+    .nav-section {
+        gap: 5px;
+    }
+
+    .nav-button {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+}

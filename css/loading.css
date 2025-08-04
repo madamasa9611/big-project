@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: sans-serif;
+    overflow: hidden; /* Prevent scrollbars from appearing */
+}
+
+#background-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1; /* Send video to the background */
+    background-size: cover;
+}
+
+.loader-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    background: white;
+    border-radius: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.map-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(90deg, #ddd 1px, transparent 1px),
+        linear-gradient(0deg, #ddd 1px, transparent 1px);
+    background-size: 40px 40px;
+    border-radius: 32px;
+    z-index: 1;
+}
+
+.pin {
+    width: 80px;
+    height: 100px;
+    animation: rotateY 2s infinite linear;
+    transform-style: preserve-3d;
+    z-index: 2;
+}
+
+.hole {
+    fill: white;
+    stroke: rgba(0, 0, 0, 0.1);
+    stroke-width: 1;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    /* 控制地圖與Loading之間的距離 */
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 30px;
+    background: linear-gradient(90deg, #000000 50%, #1a1b6900 0) right/200% 100%;
+    animation: l21 2s infinite linear;
+}
+
+
+.loader::before {
+    content: "Loading...";
+    color: #0000;
+    padding: 0 5px;
+    background: inherit;
+    background-image: linear-gradient(90deg, #fff 50%, #ffffff 0);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+@keyframes l21 {
+    100% {
+        background-position: left
+    }
+}
+
+@keyframes rotateY {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    50% {
+        transform: rotateY(180deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+.progress-percentage {
+    color: white;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 30px;
+}
+
+
